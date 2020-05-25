@@ -1,0 +1,1 @@
+(a,Bloomberg)(b,Bernie)(c,Trump)(c,Trump)(c,Bloomberg)(d,Warren)(e,Bernie)(f,SpaghettiMonster)(g,Trump)(h,Bernie)(i,Trump)

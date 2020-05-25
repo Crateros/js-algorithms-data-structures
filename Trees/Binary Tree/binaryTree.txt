@@ -1,0 +1,10 @@
+Common Operations:
+-Add (Inserts new node relative to parent)
+-Remove (Deletes node and entire sub-tree)
+-Balance (Sorts tree making it optimal for searching)
+-Find (search tree for given value in nodes data property)
+
+Every node has no more than two children, left child is always less than parent,
+right child is always greater.
+
+Each step reduces search space by 1/2.... can find any node in 1 million node tree in n <=20 steps

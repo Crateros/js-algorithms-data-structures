@@ -1,0 +1,8 @@
+Constant time O(1) beats linear O(n) IF data is sufficiently big. n is just variable name,
+could use a or s... or s^2...
+
+1. Make sure to add multiple steps, O(a) and O(b) is O(a+b)
+2. Drop constants. O(2n) => O(n)
+3. Differnt inputs are represented with different variables. Looping through array and
+with nested for loop to iterate through array b would be O(a*b), not O(n^2).
+4. Drop non-dominant terms: O(n + n^2) => O(n^2).
