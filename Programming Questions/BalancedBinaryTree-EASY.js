@@ -68,7 +68,7 @@ BinaryTree.prototype.balancedTree = subTree => {
   // Base case for balance: !subtree returns true
 
   subTreeHeight = subTree => {
-    //Base case
+    // Base case
     if (!subTree) return 0;
     // Recurse down the tree to determine the subTree height
     return Math.max(subTreeHeight(subTree.left), subTreeHeight(subTree.right)) + 1;
@@ -78,9 +78,6 @@ BinaryTree.prototype.balancedTree = subTree => {
     // Base case
     if (!subTree) return true;
 
-    // const delta = Math.abs(subTreeHeight(subTree.left) - subTreeHeight(subTree.right));
-    // console.log('delta: ', delta);
-    // if (delta > 1) return false;
     // Recurse down the tree to determine the subTree balance on the left and right side (which requires the subTree height)
     return Math.abs(subTreeHeight(subTree.left), subTreeHeight(subTree.right)) <= 1;
   };
