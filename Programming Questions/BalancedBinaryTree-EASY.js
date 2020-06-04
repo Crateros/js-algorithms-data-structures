@@ -44,7 +44,7 @@ class BinaryTree {
   }
 
   addNode(data) {
-    const newNode = new Node(data);
+    return new Node(data);
 
     // this.root === null ? (this.root = newNode) : this.insertNode(this.root, newNode);
   }

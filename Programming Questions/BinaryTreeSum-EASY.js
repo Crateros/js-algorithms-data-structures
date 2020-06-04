@@ -84,7 +84,7 @@ class Node {
   }
 }
 
-class binaryTree {
+class BinarySearchTree {
   constructor() {
     this.root = null;
   }
@@ -122,7 +122,7 @@ class binaryTree {
   }
 }
 
-let treeOne = new binaryTree();
+let treeOne = new BinarySearchTree();
 treeOne.addNode(8);
 treeOne.addNode(4);
 treeOne.addNode(13);
