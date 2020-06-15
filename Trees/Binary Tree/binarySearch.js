@@ -12,20 +12,20 @@
 //Iterative approach
 function binarySearch(array, target) {
   var start = 0;
-  var end = array.length-1;
+  var end = array.length - 1;
 
   //Check for empty array
-  if(array.length < 1) {
+  if (array.length < 1) {
     return -1;
   }
 
   //Sort array if necessary
   array = array.sort(function(a, b) {
-    return a-b;
+    return a - b;
   });
 
   //Loop through the array as long as start does not increment beyond end (exit condition)
-  while(start <= end) {
+  while (start <= end) {
     //Calculate mid point at each iteration, with HUGE arrays start + end can exceed memory
     // allocation limits, so a more robust approach is mid = start + (end - start) / 2
     // this will avoid overflow
@@ -33,15 +33,13 @@ function binarySearch(array, target) {
 
     //Check for a match
     if (array[mid] === target) {
-      console.log("I found " + target + " at index " + mid + " in array [" + array + "]");
+      console.log('I found ' + target + ' at index ' + mid + ' in array [' + array + ']');
       return mid;
-    }
-    //Adjust end index position if target value is smaller
-    else if (array[mid] < target) {
+    } else if (array[mid] < target) {
+      //Adjust end index position if target value is smaller
       start = mid + 1;
-    }
-    //Adjust start index position if target value is larger
-    else if(array[mid] > target) {
+    } else if (array[mid] > target) {
+      //Adjust start index position if target value is larger
       end = mid - 1;
     }
   }
@@ -49,14 +47,14 @@ function binarySearch(array, target) {
   return -1;
 }
 
-binarySearch([1,2,3,4,5,6], 3);
+binarySearch([1, 2, 3, 4, 5, 6], 3);
 
 // What if array does not come sorted? Implement ascending sort function
 
-var array = [1,3,5,7,9,2,4,6,8,10];
+var array = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10];
 
-array.sort(function(a,b) {
-  return a-b;
+array.sort(function(a, b) {
+  return a - b;
 });
 
 // ---------------------------------------------------------
@@ -64,8 +62,8 @@ array.sort(function(a,b) {
 // Recursive approach, O(log(n)). Iteration has advantages because it does not add function stacks to the memory
 
 function binarySearchRecursive(array, start, end, target) {
-  var mid = Math.floor(start + ((end - start) / 2)) //This prevents overflow instead of using start + end for HUGE array
-  console.log("top of mid: ", mid);
+  var mid = Math.floor(start + (end - start) / 2); //This prevents overflow instead of using start + end for HUGE array
+  console.log('top of mid: ', mid);
   // //Sort array ascending if necessary
   // array = array.sort(function(a, b) {
   //   return a-b;
@@ -73,31 +71,27 @@ function binarySearchRecursive(array, start, end, target) {
 
   //Element not found, exit recursion
   if (start > end) {
-    console.log("nope");
+    console.log('nope');
     return -1;
   }
   if (array[mid] === target) {
     //Element found, exit recursion
-    console.log("I found " + target + " at index " + mid + " in array [" + array + "]");
+    console.log('I found ' + target + ' at index ' + mid + ' in array [' + array + ']');
     return mid;
-  }
-  else if (target < array[mid]) {
-    return binarySearchRecursive(array, start, mid-1, target);
-  }
-  else if (target > array[mid]) {
-    return binarySearchRecursive(array, mid+1, end, target);
+  } else if (target < array[mid]) {
+    return binarySearchRecursive(array, start, mid - 1, target);
+  } else if (target > array[mid]) {
+    return binarySearchRecursive(array, mid + 1, end, target);
   }
 }
-binarySearchRecursive([1,5,7,21,55,77,79], 0, 7, 55);
-
-
+binarySearchRecursive([1, 5, 7, 21, 55, 77, 79], 0, 7, 55);
 
 function binarySearch(arr, x) {
   var low = 0;
-  var high = arr.length -1;
+  var high = arr.length - 1;
 
   if (high < 2) {
-    return -1
+    return -1;
   }
 
   while (low <= high) {
@@ -105,14 +99,10 @@ function binarySearch(arr, x) {
 
     if (arr[mid] === x) {
       return mid;
-    }
-
-    else if (arr[mid] < x) {
+    } else if (arr[mid] < x) {
       low = mid + 1;
-    }
-
-    else {
-      high = mid -1;
+    } else {
+      high = mid - 1;
     }
   }
   return -1;
@@ -122,15 +112,13 @@ function binarySearchRecursive(arr, low, high, x) {
   var mid = Math.floor((high + low) / 2);
 
   if (low > high) {
-    return -1
+    return -1;
   }
   if (arr[mid] === x) {
-    return mid
-  }
-  else if (arr[mid] < x) {
-    return binarySearchRecursive(arr, mid+1, high, x);
-  }
-  else if (arr[mid] > x) {
-    return binarySearchRecursive(arr, low, mid-1, x);
+    return mid;
+  } else if (arr[mid] < x) {
+    return binarySearchRecursive(arr, mid + 1, high, x);
+  } else if (arr[mid] > x) {
+    return binarySearchRecursive(arr, low, mid - 1, x);
   }
 }
