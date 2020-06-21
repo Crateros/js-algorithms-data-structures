@@ -4,10 +4,12 @@ const findFirstDuplicate = array => {
   // with the lowest index
 
   const set = new Set();
-  for (let i = 0; i < array.length; i++) {
-    if (!set.has(array[i])) set.add(array[i]);
+  for (let item of array) {
+    if (!set.has(item)) set.add(item);
     else return i;
   }
+
+  return -1;
 };
 
 const testArray = [2, 1, 3, 5, 3, 2];
