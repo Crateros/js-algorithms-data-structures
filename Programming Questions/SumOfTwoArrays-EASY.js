@@ -1,7 +1,6 @@
-// Given two arrays a & b which can contain n number of elements,
-// positive or negative. Return true if a value from a and a value from b
-// can sum to the target value of k. If no combination is possible
-// then return -1.
+// Given two arrays A & B which can contain N number of elements
+// positive or negative. Return true if a value from A and a value from B
+// can sum to K. If no combination is possible then return -1.
 
 const twoSum = (a, b, k) => {
   // We can create a set that consists of the compliment values
@@ -17,8 +16,6 @@ const twoSum = (a, b, k) => {
   for (item of b) {
     if (set.has(item)) return true;
   }
-
-  console.log(set);
 
   return -1;
 };
