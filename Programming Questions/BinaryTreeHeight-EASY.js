@@ -12,7 +12,7 @@
 
 // Tree height is calculated by taking the maximum of the left and right subtree and adding 1 (for the current node).
 // H(t) = max(left.subtree, right.subtree) + 1
-// A leaf node has a height of 0, therefor a null node has a height of -1.
+// A leaf node has a height of 0, therefore a null node has a height of -1.
 
 class Node {
   constructor(data) {
