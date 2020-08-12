@@ -26,7 +26,7 @@ class LinkedList {
     // If empty list
     if (!this.tail) {
       this.head = this.tail = new Node(value);
-    // If populated list
+      // If populated list
     } else {
       // Preserve current tail
       let oldTail = this.tail;
@@ -44,9 +44,8 @@ class LinkedList {
     // If empty list
     if (!this.head) {
       this.head = this.tail = new Node(value);
-    }
-    // If populated list
-    else {
+    } else {
+      // If populated list
       // Preserve current head
       let oldHead = this.head;
       // Set new head as incoming node
@@ -62,9 +61,8 @@ class LinkedList {
     // If empty list
     if (!this.head) {
       return null;
-    }
-    // If populated list
-    else {
+    } else {
+      // If populated list
       // Preserve current head
       const currentHead = this.head;
 
@@ -86,9 +84,8 @@ class LinkedList {
     // If empty list
     if (!this.head) {
       return null;
-    }
-    // If populated list
-    else {
+    } else {
+      // If populated list
       // Preserve current tail
       const currentTail = this.tail;
 
@@ -132,7 +129,7 @@ class Node {
   }
 }
 
-let list = new LinkedList;
+let list = new LinkedList();
 list.append('Hello');
 list.append('Goodbye');
 list.prepend('FIRST!');
