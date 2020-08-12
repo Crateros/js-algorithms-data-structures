@@ -57,8 +57,6 @@ const rotateImageV2 = matrix => {
   // Access matrix values by column
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length; j++) {
-      console.log(matrix[i][j]);
-      console.log(matrix[j][length - 1 - i]);
       rotatedArray[j][length - 1 - i] = matrix[i][j];
     }
   }
@@ -67,3 +65,24 @@ const rotateImageV2 = matrix => {
 };
 
 console.log(rotateImageV2(testArray));
+
+const rotateImageConstantSpace = matrix => {
+  const length = matrix.length;
+  // Access matrix values by row and column and swap
+  for (let i = 0; i < length; i++) {
+    for (let j = i; j < length; j++) {
+      // Get row value
+      let temp = matrix[i][j];
+      // Swap row value with column value
+      matrix[i][j] = matrix[j][i];
+      // Reassign column value to initial row value
+      matrix[j][i] = temp;
+    }
+
+    matrix[i].reverse();
+  }
+
+  return matrix;
+};
+
+console.log(rotateImageConstantSpace(testArray));
