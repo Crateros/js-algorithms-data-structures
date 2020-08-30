@@ -53,10 +53,10 @@ const lowestCommonAncestor = (root, a, b) => {
   // LCA of a and b found, return root
   if (root.left.data === a && root.right.data === b) {
     return root.data;
-  } else if (a < root.data) {
+  } else if (a < root.data && b < root.data) {
     // Traverse left
     return lowestCommonAncestor(root.left, a, b);
-  } else if (a > root.data) {
+  } else if (a > root.data && b > root.data) {
     // Traverse right
     return lowestCommonAncestor(root.right, a, b);
   }
