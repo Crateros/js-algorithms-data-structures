@@ -24,9 +24,8 @@ const insertNode = (insertionIndex, data, linkedList) => {
       currentNodeIndex++;
     }
     // Perform insertion
-    const temp = currentNode.next;
+    newNode.next = currentNode.next;
     currentNode.next = newNode;
-    newNode.next = temp;
   }
 
   const postInsertion = linkedList.traverseNodes();
