@@ -9,6 +9,7 @@ const findFirstNonRepeating = string => {
     if (charMap.has(char)) charMap.set(char, charMap.get(char) + 1);
     else charMap.set(char, 1);
   }
+  console.log(charMap);
 
   for (let [char, value] of charMap) {
     if (value === 1) {
