@@ -18,10 +18,10 @@ const findFirstDuplicate = array => {
   return -1;
 };
 
-const slickSoluton = array => {
+const slickSolution = array => {
   // We can loop through the input array once since
   // all of the values are positive and within the index of the array
-  // we can use the values themsevles as lookups.
+  // we can use the values themselves as lookups.
 
   // We can assess the absolute value of the array[value - 1] (for 0 index)
   // and determine if we have seen that value before by flipping it to
@@ -37,14 +37,38 @@ const slickSoluton = array => {
   return -1;
 };
 
+// This does not work if the first duplicate with the lowest index has more than 2 entries
+slickSolutionTwo = array => {
+  let lowestDuplicate = array.length + 1;
+
+  array.forEach(item => {
+    let first = array.indexOf(item);
+    let last = array.lastIndexOf(item);
+
+    if (first !== last && last < lowestDuplicate) {
+      console.log(item);
+      console.log(last);
+      lowestDuplicate = last;
+      console.log(lowestDuplicate);
+    }
+  });
+
+  return array[lowestDuplicate] || -1;
+};
+
 const testArray = [2, 1, 3, 5, 3, 2, 4];
 const testArrayTwo = [2, 2, 1, 1, 3, 5, 3];
 const testArrayThree = [1, 2, 3, 4, 5, 6, 7, 8];
-const testArrayFour = [1, 2, 2, 2, 4, 4];
+const testArrayFour = [1, 2, 2, 1, 2, 4, 4];
 console.log(findFirstDuplicate(testArray));
 console.log(findFirstDuplicate(testArrayTwo));
 console.log(findFirstDuplicate(testArrayThree));
-console.log(slickSoluton(testArray));
-console.log(slickSoluton(testArrayTwo));
-console.log(slickSoluton(testArrayThree));
-console.log(slickSoluton(testArrayFour));
+console.log(findFirstDuplicate(testArrayFour));
+console.log(slickSolutionTwo(testArray));
+console.log(slickSolutionTwo(testArrayTwo));
+console.log(slickSolutionTwo(testArrayThree));
+console.log(slickSolutionTwo(testArrayFour));
+console.log(slickSolution(testArray));
+console.log(slickSolution(testArrayTwo));
+console.log(slickSolution(testArrayThree));
+console.log(slickSolution(testArrayFour));
