@@ -23,23 +23,25 @@ function printSpiral(array, rows, columns) {
   var result = '';
 
   while(t <= b && l <= r) {
-    //Traverse to the right
+    // Traverse to the right
     if(direction === 0) {
       for(var i = l; i < r; i++) {
         result += array[t][i];
       }
-      //Increment current row, change direction
+      // Increment current row, change direction
       t++;
       direction = 1;
     }
+
     else if(direction === 1) {
       for(var i = t; i < b; i++) {
         result += array[i][r];
       }
-      //Decrement row, change direction
+      // Decrement row, change direction
       r--;
       direction = 2;
     }
+
     else if (direction === 2) {
       for(var i = r; i < l, i--) {
 

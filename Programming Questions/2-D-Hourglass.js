@@ -50,37 +50,40 @@
 // 0 0 2   0 2 4   2 4 4   4 4 0
 //  0       0       2       0
 // 0 0 1   0 1 2   1 2 4   2 4 0
-// 
+//
 // The hourglass with the maximum sum (19) is:
 //
 // 2 4 4
 //   2
 // 1 2 4
 
-function main() {
-    var arr = [];
-    for(arr_i = 0; arr_i < 6; arr_i++){
-       arr[arr_i] = readLine().split(' ');
-       arr[arr_i] = arr[arr_i].map(Number);
+class Hourglass {
+  constructor(a) {
+    this.a = a;
+    this.largestHourglass = null;
+  }
+
+  findLargestHourglass() {
+    for (let i = 0; i < this.a.length - 2; i++) {
+      for (let j = 0; j < this.a[i].length - 2; j++) {
+        let top = this.a[i][j] + this.a[i][j + 1] + this.a[i][j + 2];
+        let mid = this.a[i + 1][j + 1];
+        let bottom = this.a[i + 2][j] + this.a[i + 2][j + 1] + this.a[i + 2][j + 2];
+        let hourglass = top + mid + bottom;
+        if (hourglass > this.largestHourglass) this.largestHourglass = hourglass;
+      }
     }
-    //Hourglass sum structure: top row: a[n] + a[n+1] + a[n+2]
-    //                                mid row: a+1[n+1]
-    //                         bot row: a+2[n] + a+2[n+1] + a+2[n+2]
-    // console.log(arr);
-    var biggestHourglass;
-    for (var i = 0; i < arr.length - 2; i++) {
-        for (var j = 0; j < arr[i].length - 2; j++) {
-          var topRow = arr[i][j] + arr[i][j+1] + arr[i][j+2];
-          var midRow = arr[i+1][j+1];
-          var botRow = arr[i+2][j] + arr[i+2][j+1] + arr[i+2][j+2];
-          var hourglassTotal = topRow + midRow + botRow;
-          if (biggestHourglass === undefined) {
-              biggestHourglass = hourglassTotal;
-          }
-          else if (hourglassTotal > biggestHourglass) {
-              biggestHourglass = hourglassTotal;
-          }
-        }
-    }
-    console.log(biggestHourglass);
+    return this.largestHourglass;
+  }
 }
+
+const testArray = [
+  [1, 1, 1, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0],
+  [1, 1, 1, 0, 0, 0],
+  [0, 0, 2, 4, 4, 0],
+  [0, 0, 0, 2, 0, 0],
+  [0, 0, 1, 2, 4, 0],
+];
+const hourglass = new Hourglass(testArray);
+console.log(hourglass.findLargestHourglass());

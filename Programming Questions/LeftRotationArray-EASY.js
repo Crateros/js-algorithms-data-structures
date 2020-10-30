@@ -7,8 +7,8 @@
 
 const performLeftRotations = (a, d) => {
   let result = '';
-  const normalizedD = d > a.length ? d % a.length : d;
-  [...a.slice(normalizedD, a.length), ...a.slice(0, normalizedD)].forEach(e => {
+  const normalized = d > a.length ? d % a.length : d;
+  [...a.slice(normalized, a.length), ...a.slice(0, normalized)].forEach(e => {
     result += e + ' ';
   });
   return result;
