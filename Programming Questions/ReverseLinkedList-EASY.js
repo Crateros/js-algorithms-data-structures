@@ -66,6 +66,44 @@ class Node {
   }
 }
 
+class LinkedListTwo {
+  constructor() {
+    this.head = this.tail = null;
+  }
+
+  addNode(data) {
+    let newNode = new Node(data);
+    if (!this.head) this.head = this.tail = newNode;
+    else {
+      let currentTail = this.tail;
+      currentTail.next = this.tail = newNode;
+    }
+  }
+
+  traverseList(node) {
+    let nodes = [];
+    while (node) {
+      nodes.push(node.data);
+      node = node.next;
+    }
+    return nodes;
+  }
+
+  reverseList(node) {
+    let previous = null;
+    this.tail = node;
+
+    while (node) {
+      this.head = node;
+      let next = node.next;
+      node.next = previous;
+      previous = node;
+      node = next;
+    }
+    return this.head;
+  }
+}
+
 const linkedList = new LinkedList();
 linkedList.addNode(1);
 linkedList.addNode(2);
@@ -77,3 +115,15 @@ console.log(linkedList.traverse(linkedList.head));
 console.log(linkedList.reverseList(linkedList.head));
 console.log(linkedList);
 console.log(linkedList.traverse(linkedList.head));
+
+const linkedListTwo = new LinkedListTwo();
+linkedListTwo.addNode(1);
+linkedListTwo.addNode(2);
+linkedListTwo.addNode(3);
+linkedListTwo.addNode(4);
+linkedListTwo.addNode(5);
+linkedListTwo.addNode(6);
+console.log(linkedListTwo);
+console.log(linkedListTwo.traverseList(linkedListTwo.head));
+console.log(linkedListTwo.reverseList(linkedListTwo.head));
+console.log(linkedListTwo.traverseList(linkedListTwo.head));

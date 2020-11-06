@@ -65,3 +65,23 @@ pascalTwo = function(numRows) {
 };
 
 console.log(pascalTwo(15));
+
+const pascalThree = numRows => {
+  const triangle = [];
+  for (let i = 0; i < numRows; i++) {
+    triangle.push(new Array(i + 1).fill(1));
+    for (let j = 0; j < i; j++) {
+      if (i - 1 < 0 || j - 1 < 0 || j > i - 1) continue;
+      triangle[i][j] = triangle[i - 1][j] + triangle[i - 1][j - 1];
+    }
+  }
+  return triangle;
+};
+
+console.log(pascalThree(0));
+console.log(pascalThree(1));
+console.log(pascalThree(3));
+console.log(pascalThree(4));
+console.log(pascalThree(5));
+console.log(pascalThree(6));
+console.log(pascalThree(15));

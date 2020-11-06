@@ -36,10 +36,10 @@ const findIslands = matrix => {
     // End recursion if any of these conditionals are met
 
     // Exceeded i boundaries
-    if (i < 0 || i >= matrix.length) return;
+    if (i < 0 || i > matrix.length - 1) return;
 
     // Exceeded j boundaries
-    if (j < 0 || j >= matrix[i].length) return;
+    if (j < 0 || j > matrix[i].length - 1) return;
 
     // Found the edge of that portion of the island
     if (matrix[i][j] === 0) return;
@@ -69,8 +69,47 @@ const findIslands = matrix => {
   return islandCount;
 };
 
+const findIslandsAgain = matrix => {
+  let islandCount = 0;
+
+  findStructure = (matrix, i, j) => {
+    // Exceeded width in either direction
+    if (i < 0 || i > matrix.length - 1) return;
+    // Exceeded height in either direction
+    if (j < 0 || j > matrix[i].length - 1) return;
+    // Encountered edge of island
+    if (matrix[i][j] === 0) return;
+
+    // Encountered more island, convert to 0
+    matrix[i][j] = 0;
+
+    // Go left
+    findStructure(matrix, i, j - 1);
+    // Go right
+    findStructure(matrix, i, j + 1);
+    // Go down
+    findStructure(matrix, i + 1, j);
+    // Go up
+    findStructure(matrix, i - 1, j);
+  };
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j] === 1) {
+        islandCount++;
+        findStructure(matrix, i, j);
+      }
+    }
+  }
+
+  return islandCount;
+};
+
 const testMatrix = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
 const testMatrixTwo = [[1, 1, 1, 1, 0], [1, 1, 0, 1, 0], [1, 1, 0, 0, 0], [0, 0, 0, 0, 0]];
+const testMatrixThree = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
 
 console.log(findIslands(testMatrix));
 console.log(findIslands(testMatrixTwo));
+
+console.log(findIslandsAgain(testMatrixThree));

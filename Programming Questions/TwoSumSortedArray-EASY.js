@@ -34,3 +34,21 @@ const testArray = [2, 7, 11, 15];
 console.log(twoSumSorted(testArray, 9));
 console.log(twoSumSorted(testArray, 99));
 console.log(twoSumSorted(testArray, 18));
+
+const twoSumSortedAgain = (a, t) => {
+  let l = 0;
+  let r = a.length - 1;
+
+  while (l < r) {
+    let sum = a[l] + a[r];
+    if (sum === t) return [l + 1, r + 1];
+    else if (sum < t) l++;
+    else r--;
+  }
+
+  return false;
+};
+
+console.log(twoSumSortedAgain(testArray, 9));
+console.log(twoSumSortedAgain(testArray, 99));
+console.log(twoSumSortedAgain(testArray, 18));
