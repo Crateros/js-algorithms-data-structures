@@ -32,7 +32,7 @@ class LinkedList {
     const list = [];
 
     let currentNode = node;
-    while(currentNode) {
+    while (currentNode) {
       list.push(currentNode.data);
       currentNode = currentNode.next;
     }

@@ -102,6 +102,20 @@ class LinkedListTwo {
     }
     return this.head;
   }
+
+  reverseListRecursive(node) {
+    // Base case, exit the call stack
+    if (node.next === null) {
+      console.log(node.data);
+      return node;
+    }
+
+    const reversedList = this.reverseListRecursive(node.next);
+    console.log(node.data);
+    node.next.next = node;
+    node.next = null;
+    return reversedList;
+  }
 }
 
 const linkedList = new LinkedList();
@@ -127,3 +141,4 @@ console.log(linkedListTwo);
 console.log(linkedListTwo.traverseList(linkedListTwo.head));
 console.log(linkedListTwo.reverseList(linkedListTwo.head));
 console.log(linkedListTwo.traverseList(linkedListTwo.head));
+console.log(linkedListTwo.reverseListRecursive(linkedListTwo.head));
