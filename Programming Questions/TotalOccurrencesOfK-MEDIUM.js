@@ -13,9 +13,9 @@
 // Since we are operating on a sorted list (binary search)
 // and we are going for O(LogN) time (binary search)
 // we should use a modified form of binary search to find the
-// first and last occurences of K. This establishes the range
+// first and last occurrences of K. This establishes the range
 // we are interested in within the input array. Then we do
-// range.max - range.min + 1 to get our total occurences of k.
+// range.max - range.min + 1 to get our total occurrences of k.
 
 const totalK = (array, k) => {
   const minBound = binarySearchMinBound(array, k);
