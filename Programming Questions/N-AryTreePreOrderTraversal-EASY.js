@@ -1,4 +1,4 @@
-// Given an n-ary tree, return the preorder traversal of its nodes' values.
+// Given an n-ary tree, return the PreOrder traversal of its nodes' values.
 
 // Nary-Tree input serialization is represented in their level order traversal,
 // each group of children is separated by the null value
@@ -27,8 +27,7 @@ const preOrderTraversal = node => {
   if (!node) return output;
 
   traverse = node => {
-    if (node) output.push(node.val);
-    if (!node.children.length) return;
+    output.push(node.val);
     node.children.forEach(child => traverse(child));
   };
 
@@ -50,6 +49,6 @@ const preOrderTraversalIterative = node => {
   return output;
 };
 
-const naryTree = new Node(1, [new Node(3, [new Node(5, []), new Node(6, [])]), new Node(2, []), new Node(4, [])]);
-console.log(preOrderTraversal(naryTree));
-console.log(preOrderTraversalIterative(naryTree));
+const nAryTree = new Node(1, [new Node(3, [new Node(5, []), new Node(6, [])]), new Node(2, []), new Node(4, [])]);
+console.log(preOrderTraversal(nAryTree));
+console.log(preOrderTraversalIterative(nAryTree));
