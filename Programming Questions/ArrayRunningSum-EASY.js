@@ -1,4 +1,4 @@
-// Given an array numbers. We define a running sum of an array as runningSum[i] = sum(numbers[0]…numbers[i]).
+// Given an array numbers. We define a running sum of an array as runningSumTwo[i] = sum(numbers[0]…numbers[i]).
 // Return the running sum of numbers.
 
 // Example 1:
@@ -25,6 +25,12 @@ const runningSum = array => {
   return output;
 }
 
+const runningSumTwo = array => array.map((n, i) => array[i] = array[i] + (array[i - 1] || 0));
+
 console.log(runningSum([1,2,3,4]));
 console.log(runningSum([1,1,1,1,1]));
 console.log(runningSum([3,1,2,10,1]));
+
+console.log(runningSumTwo([1,2,3,4]));
+console.log(runningSumTwo([1,1,1,1,1]));
+console.log(runningSumTwo([3,1,2,10,1]));
