@@ -19,7 +19,7 @@ class BinaryTree {
 }
 
 const mergeTrees = (a, b) => {
-  // Handle case where only tree b hase node
+  // Handle case where only tree b has node
   if (!a) return b;
   // Handle case where only tree a has node
   if (!b) return a;

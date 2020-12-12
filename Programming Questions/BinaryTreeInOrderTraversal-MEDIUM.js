@@ -50,14 +50,14 @@ class BinaryTree {
   inOrderRecursiveTraversal(node) {
     const output = [];
 
-    traverse = node => {
+    const traverse = node => {
       if (!node) return;
-      this.traverse(node.left);
+      traverse(node.left);
       output.push(node.data);
-      this.traverse(node.right);
+      traverse(node.right);
     };
 
-    this.traverse(node);
+    traverse(node);
 
     return output;
   }
@@ -93,4 +93,4 @@ binaryTree.addNode(1, binaryTree.root);
 binaryTree.addNode(9, binaryTree.root);
 console.log(binaryTree);
 console.log(binaryTree.inOrderTraversal(binaryTree.root));
-console.log(binaryTree.inOrderRecursiveTraversal(binaryTree));
+console.log(binaryTree.inOrderRecursiveTraversal(binaryTree.root));
