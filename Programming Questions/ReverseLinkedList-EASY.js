@@ -118,6 +118,67 @@ class LinkedListTwo {
   }
 }
 
+const reverseLinkedListIterative = tree => {
+  // Previous initially points to nothing
+  let previous = null;
+  // Current is initially set to the head of the tree
+  let current = tree.head;
+  // Update tail to be the original head
+  tree.tail = tree.head;
+
+  while (current) {
+    // Set the head to be the incoming node so that the head
+    // is at the other end of the linked list once the loop
+    // is complete
+    tree.head = current;
+    // Save the current nodes next value so it is not lost
+    // during the reassignment
+    let next = current.next;
+    // Reassign the current nodes next value to be the previous value
+    current.next = previous;
+    // Update previous to be the current node (for the next iteration)
+    previous = current;
+    // Update current to be the next variable that we previously saved
+    current = next;
+  }
+
+  return tree;
+}
+
+const oneMoreTime = tree => {
+  let previous = null;
+  let current = tree.head;
+  tree.tail = tree.head;
+
+  while (current) {
+    tree.head = current;
+    let next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+  return tree;
+}
+
+const andAnother = tree => {
+  tree.tail = tree.head;
+  let previous = null;
+  let current = tree.head;
+
+  while (current) {
+    tree.head = current;
+    let next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }0
+  return tree;
+}
+
+const reverseLinkedListRecursion = tree => {
+
+}
+
 const linkedList = new LinkedList();
 linkedList.addNode(1);
 linkedList.addNode(2);
@@ -148,3 +209,18 @@ console.log(linkedListTwo.traverseList(linkedListTwo.head));
 console.log(linkedListTwo.head);
 console.log(linkedListTwo.tail);
 // console.log(linkedListTwo.reverseListRecursive(linkedListTwo.head));
+
+const linkedListThree = new LinkedList();
+linkedListThree.addNode(1);
+linkedListThree.addNode(2);
+linkedListThree.addNode(3);
+linkedListThree.addNode(4);
+linkedListThree.addNode(5);
+linkedListThree.addNode(6);
+linkedListThree.addNode(7);
+linkedListThree.addNode(8);
+linkedListThree.addNode(9);
+console.log(linkedListThree.traverse(linkedListThree.head));
+const reversedLinkedListThree = reverseLinkedListIterative(linkedListThree);
+console.log(reversedLinkedListThree.traverse(reversedLinkedListThree.head));
+console.log( oneMoreTime(linkedListThree).head)
