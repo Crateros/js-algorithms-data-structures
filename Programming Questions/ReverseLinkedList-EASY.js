@@ -54,7 +54,6 @@ class LinkedList {
       // Increment current node to next value
       node = next;
     }
-
     return previous;
   }
 }
@@ -118,19 +117,19 @@ class LinkedListTwo {
   }
 }
 
-const reverseLinkedListIterative = tree => {
+const reverseLinkedListIterative = linkedList => {
   // Previous initially points to nothing
   let previous = null;
-  // Current is initially set to the head of the tree
-  let current = tree.head;
+  // Current is initially set to the head of the linkedList
+  let current = linkedList.head;
   // Update tail to be the original head
-  tree.tail = tree.head;
+  linkedList.tail = linkedList.head;
 
   while (current) {
     // Set the head to be the incoming node so that the head
     // is at the other end of the linked list once the loop
     // is complete
-    tree.head = current;
+    linkedList.head = current;
     // Save the current nodes next value so it is not lost
     // during the reassignment
     let next = current.next;
@@ -142,23 +141,23 @@ const reverseLinkedListIterative = tree => {
     current = next;
   }
 
-  return tree;
-}
+  return linkedList;
+};
 
-const oneMoreTime = tree => {
+const oneMoreTime = linkedList => {
   let previous = null;
-  let current = tree.head;
-  tree.tail = tree.head;
+  let current = linkedList.head;
+  linkedList.tail = linkedList.head;
 
   while (current) {
-    tree.head = current;
+    linkedList.head = current;
     let next = current.next;
     current.next = previous;
     previous = current;
     current = next;
   }
-  return tree;
-}
+  return linkedList;
+};
 
 const andAnother = tree => {
   tree.tail = tree.head;
@@ -171,13 +170,46 @@ const andAnother = tree => {
     current.next = previous;
     previous = current;
     current = next;
-  }0
+  }
+  0;
   return tree;
-}
+};
 
-const reverseLinkedListRecursion = tree => {
+const lastOne = linkedList => {
+  let previous = null;
+  let current = linkedList.head;
+  linkedList.tail = linkedList.head;
 
-}
+  while (current) {
+    linkedList.head = current;
+    let next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+  return linkedList;
+};
+
+const actuallyLastOne = linkedList => {
+  let previous = null;
+  let current = linkedList.head;
+  linkedList.tail = linkedList.head;
+
+  while (current) {
+    linkedList.head = current;
+    let next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+
+  return linkedList;
+};
+
+const reverseLinkedListRecursion = node => {
+  // Base case where node.next = null
+  if (!node.next) return node;
+};
 
 const linkedList = new LinkedList();
 linkedList.addNode(1);
@@ -208,7 +240,7 @@ console.log(linkedListTwo.reverseList(linkedListTwo.head));
 console.log(linkedListTwo.traverseList(linkedListTwo.head));
 console.log(linkedListTwo.head);
 console.log(linkedListTwo.tail);
-// console.log(linkedListTwo.reverseListRecursive(linkedListTwo.head));
+console.log(linkedListTwo.reverseListRecursive(linkedListTwo.head));
 
 const linkedListThree = new LinkedList();
 linkedListThree.addNode(1);
@@ -223,4 +255,4 @@ linkedListThree.addNode(9);
 console.log(linkedListThree.traverse(linkedListThree.head));
 const reversedLinkedListThree = reverseLinkedListIterative(linkedListThree);
 console.log(reversedLinkedListThree.traverse(reversedLinkedListThree.head));
-console.log( oneMoreTime(linkedListThree).head)
+console.log(oneMoreTime(linkedListThree).head);
