@@ -206,10 +206,54 @@ const actuallyLastOne = linkedList => {
   return linkedList;
 };
 
+const simplifiedIterative = linkedList => {
+  let previous = null;
+  let current = linkedList.head
+  linkedList.tail = linkedList.head;
+
+  while (current) {
+    linkedList.head = current;
+    let next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+
+  return linkedList;
+}
+
 const reverseLinkedListRecursion = node => {
-  // Base case where node.next = null
-  if (!node.next) return node;
+  // Base case where node === null node.next === null
+  // This occurs when we have reached the bottom of the call stack (the original tail)
+  // or when our new tail (the original head) points to null (at the top of the stack frame)
+  if (!node || !node.next) return node;
+
+  // Recurse down the linked list until we hit the tail
+  const reversed = reverseLinkedListRecursion (node.next);
+
+  // Once recursion is complete we need to perform the reverse logic
+  // Reverse the current nodes next value (node.next.next)
+  // to point to the current node, swapping the direction
+  node.next.next = node;
+
+  // Temporarily set the current nodes next value to null
+  // which will be resolved via the next stack frame above it.
+  // This will set the final node to point to null (the old head / new tail)
+  node.next = null;
+
+  // Finally return the reversed list that we are building one node
+  // at a time by going back up the call stack, providing an ever
+  // growing list to the stack frame above it (in reverse order)
+  return reversed;
 };
+
+const reverseRecursiveAgain = node => {
+  if (!node || !node.next) return node;
+  const reversedListHead = reverseRecursiveAgain(node.next);
+  node.next.next = node;
+  node.next = null;
+  return reversedListHead;
+}
 
 const linkedList = new LinkedList();
 linkedList.addNode(1);
@@ -256,3 +300,7 @@ console.log(linkedListThree.traverse(linkedListThree.head));
 const reversedLinkedListThree = reverseLinkedListIterative(linkedListThree);
 console.log(reversedLinkedListThree.traverse(reversedLinkedListThree.head));
 console.log(oneMoreTime(linkedListThree).head);
+console.log(simplifiedIterative(linkedListThree));
+console.log(linkedListThree.traverse(linkedListThree.head));
+console.log(linkedListThree.traverse(linkedListThree.tail));
+
