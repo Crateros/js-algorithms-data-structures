@@ -35,11 +35,24 @@ const mergeTrees = (a, b) => {
   // Recurse right
   a.right = mergeTrees(a.right, b.right);
 
-  // Return summed a node
+  console.log(a.data);
+  // Return summed node
   return a;
 };
 
-const treeA = new BinaryTree(5);
+const mergeAgain = (nodeA, nodeB) => {
+  if (!nodeA) return nodeB;
+  if (!nodeB) return nodeA;
+
+  nodeA.data += nodeB.data;
+
+  nodeA.left = mergeAgain(nodeA.left, nodeB.left);
+  nodeA.right = mergeAgain(nodeA.right, nodeB.right);
+
+  return nodeA;
+}
+
+const treeA = new BinaryTree(35);
 treeA.root.left = new Node(9);
 treeA.root.right = new Node(6);
 treeA.root.left.left = new Node(11);
@@ -53,7 +66,7 @@ treeB.root.left.left = new Node(1);
 treeB.root.left.right = new Node(5);
 treeB.root.left.left.right = new Node(7);
 
-mergeTrees(treeA.root, treeB.root);
+console.log(mergeTrees(treeA.root, treeB.root).data);
 console.log(treeA.root.data);
 console.log(treeA.root.left.data);
 console.log(treeA.root.right.data);
