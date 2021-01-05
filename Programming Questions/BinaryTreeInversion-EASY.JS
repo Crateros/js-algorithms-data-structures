@@ -54,6 +54,42 @@ class BinaryTree {
   }
 }
 
+invertTreeAgain = node => {
+  if (!node) return;
+
+  let left = invertTreeAgain(node.left);
+  let right = invertTreeAgain(node.right);
+
+  node.left = right;
+  node.right = left;
+
+  return node;
+};
+
+const oneLastInversion = node => {
+  if (!node) return;
+
+  let left = oneLastInversion(node.left);
+  let right = oneLastInversion(node.right);
+
+  node.left = right;
+  node.right = left;
+
+  return node;
+};
+
+const theLastInversion = node => {
+  if (!node) return;
+
+  let left = theLastInversion(node.left);
+  let right = theLastInversion(node.right);
+
+  node.left = right;
+  node.right = left;
+
+  return node;
+};
+
 const binaryTree = new BinaryTree(4);
 binaryTree.addNode(2);
 binaryTree.addNode(7);
@@ -68,3 +104,8 @@ console.log(binaryTree.root.left.left.data);
 console.log(binaryTree.root.right.right.data);
 console.log(binaryTree.root.right.data);
 console.log(binaryTree.root.right.left.data);
+
+invertTreeAgain(binaryTree.root);
+console.log(binaryTree.root.left.left.data);
+console.log(binaryTree.root.right.left.data);
+console.log(binaryTree.root.right.right.data);

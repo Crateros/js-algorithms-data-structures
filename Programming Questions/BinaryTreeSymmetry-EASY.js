@@ -19,7 +19,7 @@
 // The idea is to recurse through the tree and see if two things are true through "pair comparisons":
 // 1. leftSubTree.left === rightSubTree.right
 // 2. leftSubTree.right === rightSubTree.left
-// The root node is always symetrical
+// The root node is always symmetrical
 
 class Node {
   constructor(data) {
@@ -60,6 +60,21 @@ const isSymmetrical = node => {
   return !node ? true : compareValues(node.left, node.right);
 };
 
+const symmetricalTree = node => {
+  const compareValues = (leftSubTree, rightSubTree) => {
+    if (!leftSubTree && !rightSubTree) return true;
+    else if (leftSubTree && rightSubTree) {
+      return (
+        leftSubTree.data === rightSubTree.data &&
+        symmetricalTree(leftSubTree.left, rightSubTree.right) &&
+        symmetricalTree(leftSubTree.right, rightSubTree.left)
+      );
+    } else return false;
+  };
+
+  return !node ? true : compareValues(node.left, node.right);
+};
+
 const symmetrical = new BinaryTree();
 symmetrical.root = symmetrical.addNode(1);
 symmetrical.root.left = symmetrical.addNode(2);
@@ -77,3 +92,5 @@ unsymmetrical.root.right = unsymmetrical.addNode(2);
 unsymmetrical.root.left.right = unsymmetrical.addNode(3);
 unsymmetrical.root.right.right = unsymmetrical.addNode(3);
 console.log('This tree should be unsymmetrical? ', isSymmetrical(unsymmetrical.root));
+
+console.log(symmetricalTree(symmetrical.root));

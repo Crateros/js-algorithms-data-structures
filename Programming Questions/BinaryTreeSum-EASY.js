@@ -12,12 +12,12 @@
 // 8 --> N,L --> 4 N,L --> 2 N,L,R --> 4 R --> 6 N
 // 18-8=10 --> 10-4=6 --> 6-2==4(fail) --> 10-4=6 --> 6-6=0(true)
 
-// We can solve this with recursion by splitting the full route into subroutes
-// that will yield a protion of the target sum
+// We can solve this with recursion by splitting the full route into sub-routes
+// that will yield a portion of the target sum
 
 const findTreeSumInitial = (node, sum) => {
   // Find a path from root to leaf that will yield the provided sum
-  // We can use Preorder traversal (Node --> Left -> Right) to attempt
+  // We can use pre-order traversal (Node --> Left -> Right) to attempt
   // to find a path to the sum
   if (node) {
     const delta = sum - node.data;
@@ -46,31 +46,28 @@ const findTreeSum = (node, sum) => {
   // We have encountered a leaf with the sum we are looking for, send true up the stack
   if (!node.left & !node.right && sum === node.data) return true;
 
-  // Recurse through the tree
+  // Recurse through the tree, subtracting the current nodes value from the shrinking sum
   return findTreeSum(node.left, sum - node.data) || findTreeSum(node.right, sum - node.data);
 };
 
-const findTreeSumWithPath = (node, sum, path) => {
+const findTreeSumWithPath = (node, sum, path = []) => {
   if (!node) return false;
 
   if (!node.left & !node.right) {
     if (node.data === sum) {
-      path.push(node.data);
-      console.log(path);
-      return true;
+      path.unshift(node.data);
+      return path;
     } else return false;
   }
 
   if (findTreeSumWithPath(node.left, sum - node.data, path)) {
-    path.push(node.data);
-    console.log(path);
-    return true;
+    path.unshift(node.data);
+    return path;
   }
 
   if (findTreeSumWithPath(node.right, sum - node.data, path)) {
-    path.push(node.data);
-    console.log(path);
-    return true;
+    path.unshift(node.data);
+    return path;
   }
 
   return false;
@@ -122,6 +119,12 @@ class BinarySearchTree {
   }
 }
 
+const findTreeSumAgain = (node, sum) => {
+  if (!node) return false;
+  if (!node.left && !node.right && sum === node.data) return true;
+  return findTreeSumAgain(node.left, sum - node.data) || findTreeSumAgain(node.right, sum - node.data);
+};
+
 let treeOne = new BinarySearchTree();
 treeOne.addNode(8);
 treeOne.addNode(4);
@@ -135,7 +138,12 @@ console.log(findTreeSum(treeOne.root, 18));
 console.log(findTreeSum(treeOne.root, 40));
 console.log(findTreeSum(treeOne.root, 41));
 
-console.log(findTreeSumWithPath(treeOne.root, 14, []));
-console.log(findTreeSumWithPath(treeOne.root, 18, []));
-console.log(findTreeSumWithPath(treeOne.root, 40, []));
-console.log(findTreeSumWithPath(treeOne.root, 41, []));
+console.log(findTreeSumWithPath(treeOne.root, 14));
+console.log(findTreeSumWithPath(treeOne.root, 18));
+console.log(findTreeSumWithPath(treeOne.root, 40));
+console.log(findTreeSumWithPath(treeOne.root, 41));
+
+console.log(findTreeSumAgain(treeOne.root, 14));
+console.log(findTreeSumAgain(treeOne.root, 40));
+console.log(findTreeSumAgain(treeOne.root, 41));
+console.log(findTreeSumAgain(treeOne.root, 18));
