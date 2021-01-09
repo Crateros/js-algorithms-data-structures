@@ -19,7 +19,7 @@
 const sumOccurrence = (a, k) => {
   let sum = 0;
   let count = 0;
-  const map = new Map([[sum, 1]]);
+  const map = new Map([[0, 1]]);
   a.map(n => {
     sum += n;
     map.get(sum - k) ? (count += map.get(sum - k)) : null;
@@ -31,16 +31,16 @@ const sumOccurrence = (a, k) => {
 
 const sumArrayOccurrence = (a, k) => {
   let sum = 0;
-  let result = 0;
+  let count = 0;
   const map = new Map([[0, 1]]);
 
   a.map(n => {
     sum += n;
-    map.has(sum - k) ? (result += map.get(sum - k)) : null;
+    map.has(sum - k) ? (count += map.get(sum - k)) : null;
     map.set(sum, map.has(sum) ? map.get(sum) + 1 : 1);
   });
 
-  return result;
+  return count;
 };
 
 const oneMoreTime = (a, k) => {
@@ -61,7 +61,7 @@ console.log(sumOccurrence([1, 1, 1], 2));
 console.log(sumOccurrence([3, 4, 7, 2, -3, 1, 4, 2], 7));
 console.log(sumOccurrence([-1, -1, 1], 0));
 console.log(sumOccurrence([1], 0));
-console.log(sumOccurrence([1, -1, 0], 0));
+console.log(sumOccurrence([1, -1, 0], -1));
 
 console.log(sumArrayOccurrence([1, 1, 1], 2));
 console.log(sumArrayOccurrence([3, 4, 7, 2, -3, 1, 4, 2], 7));
@@ -70,7 +70,7 @@ console.log(sumArrayOccurrence([1], 0));
 console.log(sumArrayOccurrence([1, -1, 0], 0));
 
 console.log(oneMoreTime([1, 1, 1], 2));
-console.log(oneMoreTime([3, 4, 7, 2, -3, 1, 4, 2], 7));
+console.log(oneMoreTime([3, 4, 7, 2, -3, 1, 4, 2], -2));
 console.log(oneMoreTime([-1, -1, 1], 0));
 console.log(oneMoreTime([1], 0));
 console.log(oneMoreTime([1, -1, 0], 0));

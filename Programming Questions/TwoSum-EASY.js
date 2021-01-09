@@ -17,6 +17,16 @@
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
 
+// We use a map data structure, when we encounter a value we push
+// the compliment of that value and the target to the map along with
+// the current index { key: value } = {target - array[i]: i}.
+// At each iteration of the loop we first ask if the map currently has
+// a[i], if it does it means we already found the sum. If our target is 9
+// and we encounter a 2 and we see that a 2 is already in our map then it
+// means that we have already encountered a 7 since 9 -  7 = 2. So if a 2
+// already exists in our map then 7 exists in our array. We would then return
+// map.get(a[i], i) (our compliments index, our current index).
+
 const twoSum = (a, k) => {
   const map = new Map();
   for (let i = 0; i < a.length; i++) {
@@ -35,6 +45,15 @@ const twoSumAgain = (a, k) => {
   return result;
 };
 
+const twoSumOnceMore = (a, k) => {
+  const map = new Map();
+  for (let i = 0; i < a.length; i++) {
+    if (map.has(a[i])) return [map.get(a[i]), i];
+    map.set(k - a[i], i);
+  }
+  return [];
+};
+
 console.log(twoSum([2, 7, 11, 15], 9));
 console.log(twoSum([2, 7, 11, 15], 30));
 console.log(twoSum([2, 7, 12, 12], 24));
@@ -46,3 +65,9 @@ console.log(twoSumAgain([2, 7, 11, 15], 30));
 console.log(twoSumAgain([2, 7, 12, 12], 24));
 console.log(twoSumAgain([3, 2, 4], 6));
 console.log(twoSumAgain([3, 3], 6));
+
+console.log(twoSumOnceMore([2, 7, 11, 15], 9));
+console.log(twoSumOnceMore([2, 7, 11, 15], 30));
+console.log(twoSumOnceMore([2, 7, 12, 12], 24));
+console.log(twoSumOnceMore([3, 2, 4], 6));
+console.log(twoSumOnceMore([3, 3], 6));
