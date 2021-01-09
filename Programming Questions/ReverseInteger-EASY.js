@@ -21,15 +21,15 @@
 const reverseIntegerString = integer => parseInt(integer.toString().split('').reverse().join(''));
 
 const reverseIntegerMath = integer => {
-  const isNegative = integer > -1 ? 1 : -1
+  const isNegative = integer > -1 ? 1 : -1;
   let normalizedInteger = integer * isNegative;
   let remainder = 0;
   let reversed = 0;
-  
+
   while (normalizedInteger > 0) {
     remainder = normalizedInteger % 10;
     normalizedInteger = Math.floor(normalizedInteger / 10);
-    reversed = (reversed * 10) + remainder;
+    reversed = reversed * 10 + remainder;
   }
 
   return reversed * isNegative;

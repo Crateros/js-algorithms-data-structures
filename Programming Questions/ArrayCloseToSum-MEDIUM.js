@@ -2,30 +2,32 @@
 // with the closest possible sum of X.
 
 const calculateNearestSum = (array, target) => {
-  const sortedArray = array.sort((a, b) => a - b);
-  let leftPointer = 0;
-  let rightPointer = sortedArray.length - 1;
+  const sorted = array.sort((a, b) => a - b);
+  let left = 0;
+  let right = array.length - 1;
+  let closest = sorted[left] + sorted[right];
 
-  while (leftPointer < rightPointer) {
-    let left = sortedArray[leftPointer];
-    let right = sortedArray[rightPointer];
-    let currentSum = left + right;
-    let delta = Math.abs(total - currentSum);
-
-    // Target sum found
-    if (currentSum === target) {
-      const sum = [left, right];
-      return sum;
-    } else if (currentSum > target && Math.abs(total - currentSum) > delta) {
-      // Sum > target, shift rightPointer to the left
-      rightPointer--;
-    } else if (currentSum < target) {
-      // Sum < target, shift leftPointer to the right
-      leftPointer++;
-    }
+  while (left < right) {
+    let currentSum = sorted[left] + sorted[right];
+    if (currentSum === target) return currentSum;
+    if (Math.abs(target - currentSum) < Math.abs(target - closest)) closest = currentSum;
+    currentSum < target ? left++ : right--;
   }
-
-  return false;
+  return closest;
 };
 
-console.log(calculateNearest([5, 3, 7, 8, 5, 5, 5, 9, 11, 6], 99));
+// const calculateNearestSumHash = (a, k) => {
+
+// }
+
+console.log(calculateNearestSum([-5, -3, -7, -8, 5, 5, 5, 9, 11, 6], 99));
+console.log(calculateNearestSum([-5, -3, -7, -8, 5, 5, 5, 9, 11, 6], 0));
+console.log(calculateNearestSum([-5, -3, -7, -8, 5, 5, 5, 9, 11, 6], -8));
+console.log(calculateNearestSum([-5, -3, -7, -8, 5, 5, 5, 9, 11, 6], 12));
+console.log(calculateNearestSum([-5, -3, -7, -8, 5, 5, 5, 9, 11, 6], 99));
+console.log(calculateNearestSum([-5, -3, -7, -8, 5, 5, 5, 9, 11, 6], 18));
+console.log(calculateNearestSum([-5, 12, -3, 4, -15, 6, 1], 2));
+console.log(calculateNearestSum([2, 2, -1, 5, -3, -2], 7));
+console.log(calculateNearestSum([2, 2, -1, 5, -3, -2], -2));
+console.log(calculateNearestSum([1, 2, 3, 4, 5, 6], 25));
+console.log(calculateNearestSum([1, 2, 3, 4, 5, 6], 6));
