@@ -20,7 +20,7 @@ const minimumDeletions = string => {
 const test1 = 'AAAA';
 const test2 = 'BBBBB';
 const test3 = 'ABABABAB';
-const test4 = 'BABABA';
+const test4 = 'BABABAB';
 const test5 = 'AAABBB';
 
 console.log(minimumDeletions('AAAA'));
