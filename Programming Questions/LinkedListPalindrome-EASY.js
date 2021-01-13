@@ -50,8 +50,21 @@ class Node {
 
 const linkedListPalindrome = linkedList => {
   const array = linkedList.traverse(linkedList.head);
-  return array.join('') === array.reverse().join();
+  return array.join('') === array.reverse().join('');
 };
+
+const linkedListPalindromeNoSpace = head => {
+  let slow = fast = head;
+
+  while (fast || fast.next) {
+    slow = slow.next;
+    fast = fast.next.next
+  }
+  console.log(slow.data);
+  console.log(fast.data);
+}
+
+
 
 const linkedList = new LinkedList();
 linkedList.addNode(1);
@@ -59,6 +72,12 @@ linkedList.addNode(2);
 linkedList.addNode(3);
 linkedList.addNode(4);
 linkedList.addNode(5);
+linkedList.addNode(4);
+linkedList.addNode(3);
+linkedList.addNode(2);
+linkedList.addNode(1);
+
 console.log(linkedList);
 console.log(linkedList.traverse(linkedList.head));
 console.log(linkedListPalindrome(linkedList));
+console.log(linkedListPalindromeNoSpace(linkedList.head));

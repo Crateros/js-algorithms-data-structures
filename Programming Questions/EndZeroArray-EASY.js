@@ -39,6 +39,22 @@ const shiftZeroInPlaceAgain = a => {
   return a;
 };
 
+const shiftZeroInPlaceOnceMore = array => {
+  let nonZeroPointer = 0;
+  const length = array.length
+  for (let i = 0; i < length; i++) {
+    // Since zero is falsey we can just check
+    //for array[i]
+    if (array[i]) {
+      array[nonZeroPointer++] = array[i]
+    }
+  }
+  for (let i = nonZeroPointer; i < length; i++) {
+    array[i] = 0;
+  }
+  return array;
+}
+
 console.log(shiftZeroArray([1, 2, 0, 0, 5, 0]));
 console.log(shiftZeroArray([1, 2, 0, 0, 5, 0, 7, 99, -124, 0, 5, 4, 0, 0, 0, 88, -98]));
 
@@ -50,3 +66,6 @@ console.log(shiftZeroesInPlace([1, 2, 0, 0, 5, 0, 7, 99, -124, 0, 5, 4, 0, 0, 0,
 
 console.log(shiftZeroInPlaceAgain([1, 2, 0, 0, 5, 0]));
 console.log(shiftZeroInPlaceAgain([1, 2, 0, 0, 5, 0, 7, 99, -124, 0, 5, 4, 0, 0, 0, 88, -98]));
+
+console.log(shiftZeroInPlaceOnceMore([1, 2, 0, 0, 5, 0]));
+console.log(shiftZeroInPlaceOnceMore([1, 2, 0, 0, 5, 0, 7, 99, -124, 0, 5, 4, 0, 0, 0, 88, -98]));

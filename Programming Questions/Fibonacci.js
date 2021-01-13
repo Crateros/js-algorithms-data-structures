@@ -10,21 +10,24 @@ function fibonacciRecurse(value) {
   }
 }
 
-//Iterative time complexity O(n)
+//Iterative time complexity O(n) via memoization
 
 function fibonacciLoop(value) {
-  if (value <= 1) {
-    return 1;
+  if (value < 1) return value;
+  let a = 0;
+  let b = 1;
+  for (let i = 1; i < value; i++) {
+    let fibSum = a + b;
+    a = b;
+    b = fibSum;
+    console.log(a,b)
   }
-  else {
-    let a = 0;
-    let b = 1;
-    var result = b;
-    for (let i = 1; i < value; i++) {
-      result = a + b;
-      a = b;
-      b = result;
-    }
-  }
-  return result
+  return b;
 }
+
+console.log(fibonacciLoop(5));
+
+var fib = function(n) {
+  // const goldenRatio = (1 + Math.sqrt(5)) / 2;
+  return Math.round(Math.pow((1 + Math.sqrt(5)) / 2, n) / Math.sqrt(5));
+};
