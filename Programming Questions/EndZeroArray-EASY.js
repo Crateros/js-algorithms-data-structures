@@ -43,7 +43,7 @@ const shiftZeroInPlaceOnceMore = array => {
   let nonZeroPointer = 0;
   const length = array.length
   for (let i = 0; i < length; i++) {
-    // Since zero is falsey we can just check
+    // Since zero is falsy we can just check
     //for array[i]
     if (array[i]) {
       array[nonZeroPointer++] = array[i]

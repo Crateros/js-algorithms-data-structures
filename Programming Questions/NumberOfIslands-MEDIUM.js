@@ -105,11 +105,61 @@ const findIslandsAgain = matrix => {
   return islandCount;
 };
 
+const findIslandsOnceMore = function(matrix) {
+  let islandCount = 0;
+
+  const findIslandStructure = function(i,j) {
+    // Respect top boundary
+    if (i < 0) return false;
+
+    // Respect bottom boundary
+    if (i > matrix.length - 1) return false;
+
+    // Respect left boundary
+    if (j < 0) return false;
+
+    // Respect right boundary
+    if (j > matrix[i].length - 1) return false;
+
+    // Respect edge of current island
+    if (matrix[i][j] === 0) return false;
+
+    // If boundaries are respected and we did not encounter
+    // a 0 then we have more island to explore, lets flip our
+    // current value to 0 to mark that we have been here
+    matrix[i][j] = 0;
+
+    // Go up
+    findIslandStructure(i - 1, j);
+    // Go down
+    findIslandStructure(i + 1, j)
+    // Go left
+    findIslandStructure(i, j - 1);
+    // Go right
+    findIslandStructure(i, j + 1);
+  }
+
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j] === 1) {
+        islandCount++;
+        findIslandStructure(i,j);
+      }
+    }
+  }
+
+  return islandCount;
+}
+
 const testMatrix = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
 const testMatrixTwo = [[1, 1, 1, 1, 0], [1, 1, 0, 1, 0], [1, 1, 0, 0, 0], [0, 0, 0, 0, 0]];
 const testMatrixThree = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
+const testMatrixFour = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
 
 console.log(findIslands(testMatrix));
 console.log(findIslands(testMatrixTwo));
 
 console.log(findIslandsAgain(testMatrixThree));
+
+console.log(findIslandsOnceMore(testMatrixFour));

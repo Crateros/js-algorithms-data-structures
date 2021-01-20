@@ -54,14 +54,44 @@ const linkedListPalindrome = linkedList => {
 };
 
 const linkedListPalindromeNoSpace = head => {
-  let slow = fast = head;
+  let slow = head;
+  let fast = head;
 
-  while (fast || fast.next) {
+  // Use Fast and Slow pointer to find middle of
+  // linked list at Slow pointer, check for fast to
+  // handle even linked lists and fast.next to handle
+  // odd linked lists
+  while (fast && fast.next) {
     slow = slow.next;
-    fast = fast.next.next
+    fast = fast.next.next;
   }
   console.log(slow.data);
-  console.log(fast.data);
+  console.log(fast);
+
+  // If linked list has an odd number of nodes then fast
+  // will end on the final node, whereas fast will end on
+  // null if the linked list has an even number of nodes
+  // since an even number has no true middle node
+
+  // We now need to reverse the linked list from our established
+  // midpoint (Slow pointer)
+  let previous = null;
+  while (slow) {
+    let next = slow.next;
+    slow.next = previous;
+    previous = slow;
+    slow = next;
+  }
+  console.log(previous.data)
+
+  // Now we can compare head.data and previous.data to determine
+  // if the linked list is a palindrome
+  while (previous) {
+    if (head.data !== previous.data) return false;
+    head = head.next;
+    previous = previous.next
+  }
+  return true
 }
 
 
@@ -70,12 +100,13 @@ const linkedList = new LinkedList();
 linkedList.addNode(1);
 linkedList.addNode(2);
 linkedList.addNode(3);
-linkedList.addNode(4);
-linkedList.addNode(5);
-linkedList.addNode(4);
-linkedList.addNode(3);
 linkedList.addNode(2);
 linkedList.addNode(1);
+// linkedList.addNode(2);
+// linkedList.addNode(7);
+// linkedList.addNode(99);
+
+
 
 console.log(linkedList);
 console.log(linkedList.traverse(linkedList.head));

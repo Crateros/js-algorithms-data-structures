@@ -112,6 +112,52 @@ const binarySearchRight = (a, k) => {
   return index;
 };
 
+const totalOccurrencesOnceMore = (array, k) => {
+  const findLeftBound = () => {
+    let left = 0;
+    let right = array.length - 1;
+
+    // For left bound when we encounter value >= k we need to decrement
+    // the right point 1 behind the current mid to traverse towards the left
+    // boundary of the set of k values. If current mid value is less than k
+    // we increment left pointer 1 ahead of current mid. Once the left and right pointers
+    // overlap we have found our first occurrence of k.
+    while (left <= right) {
+      let mid = left + Math.floor((right - left) / 2);
+      if (array[mid] >= k) right = mid - 1;
+      else left = mid + 1;
+    }
+    console.log(left, right)
+    return left;
+  }
+
+  // Finding right most occurrence of k (last occurrence) is just flipped logic versus left
+  // most occurrence. When we encounter mid value <= k we advance left pointer 1 ahead of
+  // current mid, otherwise we decrement right pointer by 1 from current mid.
+  const findRightBound = () => {
+    let left = 0;
+    let right = array.length - 1;
+
+    while (left <= right) {
+      let mid = left + Math.floor((right - left) / 2);
+      if (array[mid] <= k) left = mid + 1;
+      else right = mid - 1;
+    }
+    console.log(left, right)
+    return right;
+  }
+
+  const leftBound = findLeftBound();
+  const rightBound = findRightBound();
+  console.log(leftBound, rightBound);
+  return rightBound - leftBound + 1;
+}
+
 console.log('Should be 3: ', totalKAgain([4, 4, 8, 8, 8, 15, 16, 23, 23, 42], 8));
 console.log('Should be 0: ', totalKAgain([3, 5, 5, 5, 5, 7, 8, 8], 6));
 console.log('Should be 4: ', totalKAgain([3, 5, 5, 5, 5, 7, 8, 8], 5));
+
+console.log('Should be 4: ', totalOccurrencesOnceMore([3, 5, 5, 5, 5, 7, 8, 8], 5));
+console.log('Should be 1: ', totalOccurrencesOnceMore([5, 7, 7, 7, 7, 7, 8, 8], 5));
+
+

@@ -248,6 +248,7 @@ const reverseLinkedListRecursion = node => {
 };
 
 const reverseRecursiveAgain = node => {
+  console.log(node.head.data)
   if (!node || !node.next) return node;
   const reversedListHead = reverseRecursiveAgain(node.next);
   node.next.next = node;
@@ -267,6 +268,8 @@ console.log(linkedList.reverseList(linkedList.head));
 console.log(linkedList);
 console.log(linkedList.traverse(linkedList.head));
 
+console.log(reverseRecursiveAgain(linkedList).head.data)
+
 const linkedListTwo = new LinkedListTwo();
 linkedListTwo.addNode(1);
 linkedListTwo.addNode(2);
@@ -274,6 +277,7 @@ linkedListTwo.addNode(3);
 linkedListTwo.addNode(4);
 linkedListTwo.addNode(5);
 linkedListTwo.addNode(6);
+linkedListTwo.addNode(7);
 console.log(linkedListTwo);
 console.log(linkedListTwo.traverseList(linkedListTwo.head));
 console.log(linkedListTwo.reverseList(linkedListTwo.head));
