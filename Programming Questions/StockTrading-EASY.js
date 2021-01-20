@@ -29,5 +29,5 @@ const dayTrade = array => {
   return profit;
 }
 
-console.log(dayTrade([7,1,5,3,6,4]));
+console.log(dayTrade([7, 1, 5, 3, 6, 4]));
 console.log(dayTrade([7, 6, 4, 3, 1]));
