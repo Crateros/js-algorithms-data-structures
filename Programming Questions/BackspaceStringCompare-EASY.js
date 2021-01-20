@@ -30,6 +30,13 @@
 // Follow up:
 // Can you solve it in O(N) time and O(1) space?
 
+
+// You can use the string.slice(0, -1) method to remove the last character
+// from the string (does not modify original string) to construct the final
+// string after backspaces have been applied. Alternatively you could transform
+// the strings into char arrays and treat them like stacks, using the .pop() method
+// to remove a char from the array when you encounter a '#' symbol.
+
 const backSpaceStringCompare = (sOne, sTwo) => {
   let finalOne = '';
   let finalTwo = '';
@@ -47,7 +54,7 @@ const backSpaceStringCompare = (sOne, sTwo) => {
   return finalOne === finalTwo;
 }
 
-console.log(backSpaceStringCompare('abc#', 'abc#'));
+console.log(backSpaceStringCompare('abc#de#', 'abc#de#'));
 console.log(backSpaceStringCompare('ab##', 'c#d#'));
 console.log(backSpaceStringCompare('a##c', '#a#c'));
 console.log(backSpaceStringCompare('a#c', 'b'));
