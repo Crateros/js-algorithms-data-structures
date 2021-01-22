@@ -43,7 +43,7 @@ const binarySearchMinBound = (array, k) => {
 };
 
 // Binary search that continues search until it finds the
-// rightmost occurrenc of k
+// rightmost occurrence of k
 const binarySearchMaxBound = (array, k) => {
   let index = -1;
   let start = 0;
@@ -69,7 +69,7 @@ const totalKAgain = (a, k) => {
   const leftBound = binarySearchLeft(a, k);
   const rightBound = binarySearchRight(a, k);
 
-  // If only one occurence exists both leftBound and rightBound
+  // If only one occurrence exists both leftBound and rightBound
   // will have the same index value
   return leftBound && rightBound ? rightBound - leftBound + 1 : 0;
 };
