@@ -61,7 +61,7 @@ const productExceptSelfAgain = array => {
 console.log(productExceptSelfAgain(arrayOne));
 
 // Without division and constant space
-const prodcutExceptSelfFinal = array => {
+const productExceptSelfFinal = array => {
   // Same approach as the non-division solution but use
   // the result array and a variable to calculate the
   // products on the fly instead of calculating dedicated
@@ -84,4 +84,4 @@ const prodcutExceptSelfFinal = array => {
   return result;
 };
 
-console.log(prodcutExceptSelfFinal(arrayOne));
+console.log(productExceptSelfFinal(arrayOne));
