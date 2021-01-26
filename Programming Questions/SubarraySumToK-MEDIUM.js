@@ -50,12 +50,31 @@ const oneMoreTime = (a, k) => {
 
   for (let i = 0; i < a.length; i++) {
     sum += a[i];
-    map.has(sum - k) ? (count += map.get(sum - k)) : null;
+    if (map.has(sum - k)) {
+      console.log(sum, k, sum - k)
+      count += map.get(sum - k);
+    };
     map.set(sum, map.has(sum) ? map.get(sum) + 1 : 1);
   }
+  console.log(map);
 
   return count;
 };
+
+const lastTime = (a, k) => {
+  const map = new Map([[0, 1]]);
+  let sum = 0;
+  let count = 0;
+
+  for (let i = 0; i < a.length; i++) {
+    sum += a[i];
+    if (map.has(sum - k)) {
+      count += map.get(sum - k);
+    }
+    map.set(sum, map.has(sum) ? map.get(sum) + 1 : 1);
+  }
+  return count;
+}
 
 console.log(sumOccurrence([1, 1, 1], 2));
 console.log(sumOccurrence([3, 4, 7, 2, -3, 1, 4, 2], 7));
@@ -70,7 +89,9 @@ console.log(sumArrayOccurrence([1], 0));
 console.log(sumArrayOccurrence([1, -1, 0], 0));
 
 console.log(oneMoreTime([1, 1, 1], 2));
-console.log(oneMoreTime([3, 4, 7, 2, -3, 1, 4, 2], -2));
+console.log(oneMoreTime([3, 4, 7, 2, -3, 1, 4, 2], 7));
 console.log(oneMoreTime([-1, -1, 1], 0));
 console.log(oneMoreTime([1], 0));
 console.log(oneMoreTime([1, -1, 0], 0));
+
+console.log(lastTime([3, 4, 7, 2, -3, 1, 4, 2], 7));
