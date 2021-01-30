@@ -33,7 +33,23 @@ const validPalindrome = string => {
   return true;
 }
 
+const isValidPalindrome = string => {
+  const regex = /[a-z0-9]/gi;
+  const matched = string.toLowerCase().match(regex)
+  for (let i = 0, j = matched.length - 1; i <= j; i++, j--) {
+    if (matched[i] !== matched[j]) return false;
+  }
+  return true;
+}
+
+const isValidPalindrom
+
 console.log(validPalindrome('A man019z:!'));
 console.log(validPalindrome('A man, a plan, a canal: Panama'));
 console.log(validPalindrome('Race a CaR'));
 console.log(validPalindrome('Race a eCaR.!:<>'));
+
+console.log(isValidPalindrome('A man019z:!'));
+console.log(isValidPalindrome('A man, a plan, a canal: Panama'));
+console.log(isValidPalindrome('Race a CaR'));
+console.log(isValidPalindrome('Race a eCaR.!:<>'));

@@ -29,7 +29,7 @@ const mergeSortedArrays = (a, b) => {
       output.push(a[aPointer], b[bPointer]);
       aPointer++;
       bPointer++;
-    }  
+    }
   }
 
   aPointer > bPointer ? output.push(...a.slice(aPointer, a.length)) : output.push(...b.slice(bPointer, b.length));
@@ -62,25 +62,41 @@ const mergeSortedArraysInPlace = (a, b) => {
   return a;
 }
 
-const mergeWithStupidZeroPlaceHolders = (a, m, b, n) => {
-  m--;
+const mergeWithStupidZeroPlaceHolders = (nums1, m, nums2, n) => {
+  // End of nums1
+  let last = m + n - 1;
+  // Mid value (first non-zero value) for nums1
+  m--
+  // Mid value for nums2
   n--;
-  let last = m - n - 1;
 
-  while (m > 0 && n > 0) {
-    if (a[m] > b[n]) {
-      a[last] = a[m];
-      m--;
+  while (m > -1 && n > -1) {
+    // If current largest nums1 < current largest nums2
+    // mutate nums1[last] to current largest nums2,
+    // decrement nums2
+    if (nums1[m] < nums2[n]) {
+      nums1[last--] = nums2[n--];
+      // n--;
     }
+    // If current largest nums1 >= current largest nums2
+    // mutate nums1[last] to be current largest nums1,
+    // decrement nums1
     else {
-      a[last] = b[n];
-      n--;
+      nums1[last--] = nums1[m--];
+      // m--
     }
-    last--;
+    // Always move 1 position back at each iteration
+    // (filling in each 0 value)
+    // last--;
   }
 
-  for (let i = 0; i <= n; i++) {
-    nums1[i] = nums2[i];
+  // If nums2 has trailing values at the beginning we can shift
+  // them onto beginning of nums1 since all nums1 values are >
+  // remaining nums 2 values and both are sorted
+  while (n > -1) {
+    nums1[last--] = nums2[n--];
+    // n--;
+    // last--;
   }
   return nums1;
 }
@@ -92,13 +108,20 @@ const arr1 = [1,3,5,7];
 const arr2 = [0,2,4,5,6,7,8,99];
 const arr3 = [1];
 const arr4 = [];
-const nums1 = [1,2,3,0,0,0];
-const nums2 = [2,5,6];
+const nums1 = [2,2,3,4,0,0,0];
+const nums2 = [1,5,6,7];
+const nums3 = [1,2,3,0,0,0];
+const nums4 = [2,5,6];
 
-console.log(mergeSortedArrays(arr1, arr2));
-console.log(mergeSortedArrays(arr3, arr4));
+// console.log(mergeSortedArrays(arr1, arr2));
+// console.log(mergeSortedArrays(arr3, arr4));
 
-console.log(mergeSortedArraysInPlace(arr1, arr2));
-console.log(mergeSortedArraysInPlace(arr3, arr4));
+// console.log(mergeSortedArrays(nums1, nums2));
 
-console.log(mergeWithStupidZeroPlaceHolders(nums1, 3, nums2, 3));
+// console.log(mergeSortedArraysInPlace(arr1, arr2));
+// console.log(mergeSortedArraysInPlace(arr3, arr4));
+
+// console.log(mergeSortedArraysInPlace(nums1, nums2));
+
+console.log(mergeWithStupidZeroPlaceHolders(nums1, 4, nums2, 4));
+console.log(mergeWithStupidZeroPlaceHolders(nums3, 3, nums4, 3))

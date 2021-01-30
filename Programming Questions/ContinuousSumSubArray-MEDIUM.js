@@ -38,8 +38,50 @@ const continuousSum = (array, k) => {
   return false;
 }
 
+const continuousSumMap = (array, k) => {
+  let currentSum = 0;
+  // We need to consider that having no items in the array
+  // (index of -1) results in a sum of 0
+  let map = new Map([[0, -1]]);
+
+  for (let i = 0; i < array.length; i++) {
+    currentSum += array[i];
+    // If k = 0 we need to avoid currentSum % 0 since
+    // it results in NaN, so we just return the remainder
+    // as currentSum (unmodified)
+    let remainder = k ? currentSum % k : currentSum;
+
+    // If we encounter a remainder that already exists it means
+    // that the distance between those two points would produce a range
+    // with a sum % k that = 0. If the distance between the current index
+    // and the reoccurring index is > 1 then we have found a range with
+    // length >= 2 that sums to a multiple of k (sum % k === 0)
+    if (map.has(remainder)) {
+      if (i - map.get(remainder) > 1) return true;
+    // The else prevents us from adding a duplicate remainder, if we
+    // do encounter a duplicate remainder we should just skip adding it
+    // and continue moving along the array
+    } else {
+      map.set(remainder, i);
+    }
+  }
+
+  return false;
+}
+
 console.log(continuousSum([23, 2, 4, 6, 7], 6));
 console.log(continuousSum([23, 2, 6, 4, 7], 6));
 console.log(continuousSum([12], 6));
 console.log(continuousSum([0,0], 0));
+console.log(continuousSum([0, 0, 0, 0], 0));
 console.log(continuousSum([0, 1, 0], 0));
+
+console.log(continuousSumMap([23, 2, 4, 6, 7], 6));
+console.log(continuousSumMap([23, 2, 6, 4, 7], 6));
+console.log(continuousSumMap([12], 6));
+console.log(continuousSumMap([0, 0], 0));
+console.log(continuousSum([0, 0, 0], 0));
+console.log(continuousSumMap([0, 1, 0], 0));
+console.log(continuousSumMap([1, 0, 0], 0));
+
+
