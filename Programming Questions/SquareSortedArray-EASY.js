@@ -29,8 +29,26 @@ const squareSorted = array => {
   return result;
 };
 
+const squareSortedAgain = array => {
+  const result = new Array(array.length);
+  let i = 0;
+  let j = array.length - 1;
+  let k = array.length - 1;
+
+  while (i <= j) {
+    Math.abs(array[i]) < Math.abs(array[j])
+      ? result[k--] = Math.pow(array[j--], 2)
+      : result[k--] = Math.pow(array[i++], 2);
+  }
+
+  return result;
+}
+
 const testOne = [-4, -1, 0, 3, 10];
 const testTwo = [-7, -3, 2, 3, 11];
 
 console.log(squareSorted(testOne));
 console.log(squareSorted(testTwo));
+
+console.log(squareSortedAgain(testOne));
+console.log(squareSortedAgain(testTwo));
