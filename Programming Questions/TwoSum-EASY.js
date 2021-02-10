@@ -54,6 +54,17 @@ const twoSumOnceMore = (a, k) => {
   return [];
 };
 
+// You can also flip the order so that you are storing the value itself
+// in the map and checking for the pre-existence of the compliment
+const twoSumDifferent = (a, k) => {
+  const map = new Map;
+  for (let i = 0; i < a.length; i++) {
+    if (map.has(k - a[i])) return [map.get(k - a[i]), i];
+    map.set(a[i], i);
+  }
+  return [];
+}
+
 console.log(twoSum([2, 7, 11, 15], 9));
 console.log(twoSum([2, 7, 11, 15], 30));
 console.log(twoSum([2, 7, 12, 12], 24));
@@ -71,3 +82,10 @@ console.log(twoSumOnceMore([2, 7, 11, 15], 30));
 console.log(twoSumOnceMore([2, 7, 12, 12], 24));
 console.log(twoSumOnceMore([3, 2, 4], 6));
 console.log(twoSumOnceMore([3, 3], 6));
+
+console.log(twoSumDifferent([2, 7, 11, 15], 9));
+console.log(twoSumDifferent([2, 7, 11, 15], 30));
+console.log(twoSumDifferent([2, 7, 12, 12], 24));
+console.log(twoSumDifferent([3, 2, 4], 6));
+console.log(twoSumDifferent([3, 3], 6));
+
