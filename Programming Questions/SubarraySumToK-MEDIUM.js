@@ -76,6 +76,19 @@ const lastTime = (a, k) => {
   return count;
 }
 
+const forGoodMeasure = (a, k) => {
+  const map = new Map([[0,1]]);
+  let result = 0;
+  let sum = 0;
+
+  for (let i = 0; i < a.length; i++) {
+    sum += a[i];
+    if (map.has(sum - k)) result += map.get(sum - k);
+    map.set(sum, map.has(sum) ? map.get(sum) + 1 : 1);
+  }
+  return result;
+}
+
 console.log(sumOccurrence([1, 1, 1], 2));
 console.log(sumOccurrence([3, 4, 7, 2, -3, 1, 4, 2], 7));
 console.log(sumOccurrence([-1, -1, 1], 0));
@@ -95,3 +108,9 @@ console.log(oneMoreTime([1], 0));
 console.log(oneMoreTime([1, -1, 0], 0));
 
 console.log(lastTime([3, 4, 7, 2, -3, 1, 4, 2], 7));
+
+console.log(forGoodMeasure([1, 1, 1], 2));
+console.log(forGoodMeasure([3, 4, 7, 2, -3, 1, 4, 2], 7));
+console.log(forGoodMeasure([-1, -1, 1], 0));
+console.log(forGoodMeasure([1], 0));
+console.log(forGoodMeasure([1, -1, 0], 0));

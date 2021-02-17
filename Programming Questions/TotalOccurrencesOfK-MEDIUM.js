@@ -61,9 +61,9 @@ const binarySearchMaxBound = (array, k) => {
   return index;
 };
 
-// console.log('Should be 3: ', totalK([4, 4, 8, 8, 8, 15, 16, 23, 23, 42], 8));
-// console.log('Should be 0: ', totalK([3, 5, 5, 5, 5, 7, 8, 8], 6));
-// console.log('Should be 4: ', totalK([3, 5, 5, 5, 5, 7, 8, 8], 5));
+console.log('Should be 3: ', totalK([4, 4, 8, 8, 8, 15, 16, 23, 23, 42], 8));
+console.log('Should be 0: ', totalK([3, 5, 5, 5, 5, 7, 8, 8], 6));
+console.log('Should be 4: ', totalK([3, 5, 5, 5, 5, 7, 8, 8], 5));
 
 const totalKAgain = (a, k) => {
   const leftBound = binarySearchLeft(a, k);
@@ -158,6 +158,39 @@ console.log('Should be 0: ', totalKAgain([3, 5, 5, 5, 5, 7, 8, 8], 6));
 console.log('Should be 4: ', totalKAgain([3, 5, 5, 5, 5, 7, 8, 8], 5));
 
 console.log('Should be 4: ', totalOccurrencesOnceMore([3, 5, 5, 5, 5, 7, 8, 8], 5));
-console.log('Should be 1: ', totalOccurrencesOnceMore([5, 7, 7, 7, 7, 7, 8, 8], 5));
+// console.log('Should be 1: ', totalOccurrencesOnceMore([5, 7, 7, 7, 7, 7, 8, 8], 5));
+
+const totalOccurrencesPractice = (array, target) => {
+  function findLeftBound() {
+    let start = 0;
+    let end = array.length - 1;
+
+    while (start <= end) {
+      let mid = start + Math.floor((end - start) / 2);
+      if (array[mid] >= target) end = mid - 1;
+      else start = mid + 1;
+    }
+    return start;
+  }
+
+  function findRightBound() {
+    let start = 0;
+    let end = array.length - 1;
+
+    while (start <= end) {
+      let mid = start + Math.floor((end - start) / 2);
+      if (array[mid] <= target) start = mid + 1;
+      else end = mid - 1;
+    }
+    return end;
+  }
+  console.log(findRightBound(), findLeftBound());
+  return findRightBound() - findLeftBound() + 1
+}
+
+console.log(totalOccurrencesPractice([4, 4, 8, 8, 8, 15, 16, 23, 23, 42], 8));
+console.log(totalOccurrencesPractice([3, 5, 7, 8], 7));
+console.log(totalOccurrencesPractice([5, 5, 5, 5, 5, 5, 5, 7, 8, 8, 99], 5));
 
 
+const more

@@ -84,6 +84,20 @@ const oneMoreTime = (number) => {
   return arr.filter(n => !n).length - 2;
 }
 
+const countingPrimesAgain = (number) => {
+  if (number < 3) return 0;
+  const primes = new Uint8Array(number);
+
+  for (let i = 2; i * i < number; i++) {
+    if (primes[i] !== 1) {
+      for (let j = i; i * j < number; j++) {
+        primes[i * j] = 1;
+      }
+    }
+  }
+  return primes.filter(prime => !prime).length - 2;
+}
+
 console.log(countPrimes(10));
 console.log(countPrimes(99));
 console.log(countPrimes(1));
@@ -94,9 +108,15 @@ console.log(countPrimesFaster(10));
 console.log(countPrimesFaster(99));
 console.log(countPrimesFaster(1));
 console.log(countPrimesFaster(0));
-console.log('This is right inside the IDE! ', countPrimes(499979));
+console.log(countPrimes(499979));
 
 console.log(oneMoreTime(10));
 console.log(oneMoreTime(99));
 console.log(oneMoreTime(1));
 console.log(oneMoreTime(0));
+
+console.log(countingPrimesAgain(10));
+console.log(countingPrimesAgain(99));
+console.log(countingPrimesAgain(1));
+console.log(countingPrimesAgain(499979));
+
