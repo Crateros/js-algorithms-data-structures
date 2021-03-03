@@ -56,6 +56,15 @@ slickSolutionTwo = array => {
   return array[lowestDuplicate] || -1;
 };
 
+var findDuplicate = function(nums) {
+  for (let i = 0; i < nums.length; i++) {
+    let currentIndex = Math.abs(nums[i]) - 1;
+    if (nums[currentIndex] < 0) return Math.abs(nums[i]);
+    else nums[currentIndex] *= -1;
+  }
+};
+
+
 const testArray = [2, 1, 3, 5, 3, 2, 4];
 const testArrayTwo = [2, 2, 1, 1, 3, 5, 3];
 const testArrayThree = [1, 2, 3, 4, 5, 6, 7, 8];

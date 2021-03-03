@@ -65,3 +65,33 @@ const threeSum = array => {
 
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 console.log(threeSum([0, 0, 0, 0]));
+
+const threeSumAgain = a => {
+  const sorted = a.sort((a, b) => a - b);
+  const result = [];
+
+  for (let i = 0; i < sorted.length - 2; i++) {
+    if (i > 0 && sorted[i - 1] === sorted[i]) continue;
+
+    let a = sorted[i];
+    let b = i + 1;
+    let c = sorted.length - 1;
+
+    while (b < c) {
+      let sum = a + sorted[b] + sorted[c];
+      if (sum > 0) c--;
+      else if (sum < 0) b++;
+      else {
+        result.push([a, sorted[b], sorted[c]]);
+        b++;
+        while (b < c && sorted[b - 1] === sorted[b]) {
+          b++;
+        }
+      }
+    }
+  }
+  return result;
+}
+
+console.log(threeSumAgain([-1, 0, 1, 2, -1, -4]));
+console.log(threeSumAgain([0, 0, 0, 0]));

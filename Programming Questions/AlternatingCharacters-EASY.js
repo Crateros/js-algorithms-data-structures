@@ -17,6 +17,26 @@ const minimumDeletions = string => {
   return minDeletions;
 };
 
+const minDeletionsAgain = string => {
+  let minDeletions = 0;
+
+  string.split('').forEach((element, index, array) => {
+    element === array[index + 1] ? minDeletions++ : null;
+  });
+
+  return minDeletions;
+}
+
+const minDeletionsLoop = string => {
+  let minDeletions = 0;
+
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === string[i+1]) minDeletions++;
+  }
+
+  return minDeletions;
+}
+
 const test1 = 'AAAA';
 const test2 = 'BBBBB';
 const test3 = 'ABABABAB';
@@ -29,3 +49,17 @@ console.log(minimumDeletions(test2));
 console.log(minimumDeletions(test3));
 console.log(minimumDeletions(test4));
 console.log(minimumDeletions(test5));
+
+console.log(minDeletionsAgain('AAAA'));
+console.log(minDeletionsAgain(test1));
+console.log(minDeletionsAgain(test2));
+console.log(minDeletionsAgain(test3));
+console.log(minDeletionsAgain(test4));
+console.log(minDeletionsAgain(test5));
+
+console.log(minDeletionsLoop('AAAA'));
+console.log(minDeletionsLoop(test1));
+console.log(minDeletionsLoop(test2));
+console.log(minDeletionsLoop(test3));
+console.log(minDeletionsLoop(test4));
+console.log(minDeletionsLoop(test5));
