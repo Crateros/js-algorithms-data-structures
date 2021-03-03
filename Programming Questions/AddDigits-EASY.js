@@ -81,28 +81,26 @@ const actuallyLast = (number) => {
   return currentSum;
 }
 
-//     let currentSum = num;
+const addDemNums = number => {
+  if (number < 10) return number;
+  let currentSum = 0;
 
-//     const generateNewSum = (current) => {
-//         let newSum = 0;
+  while (number) {
+    currentSum += number % 10;
+    number = Math.floor(number / 10);
 
-//         while (current > 0) {
-//             newSum += current % 10;
-//             current = Math.floor(current / 10);
-//         }
-
-//         return newSum;
-//     }
-
-//     while (Math.floor(currentSum / 10) > 0) {
-//         currentSum = generateNewSum(currentSum);
-//     }
-
-//      return currentSum;
+    if (currentSum > 9 && number === 0) {
+      number = currentSum;
+      currentSum = 0;
+    }
+  }
+  return currentSum;
+}
 
 const cheeze = (number) => {
   return number === 0 ? 0 : 1 + (number - 1) % 9;
 }
+
 console.log(addDigits(12));
 console.log(addDigits(21));
 console.log(addDigits(38));
@@ -111,7 +109,7 @@ console.log(addDigits(119));
 console.log(addDigitsAgain(19));
 console.log(addDigitsAgain(119));
 console.log(oneLastTime(119));
-// console.log(oneLastTime(38));
+console.log(oneLastTime(38));
 
 console.log(119 % 9)
 console.log(38 % 9)

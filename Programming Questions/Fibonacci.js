@@ -20,7 +20,6 @@ function fibonacciLoop(value) {
     let fibSum = a + b;
     a = b;
     b = fibSum;
-    console.log(a,b)
   }
   return b;
 }

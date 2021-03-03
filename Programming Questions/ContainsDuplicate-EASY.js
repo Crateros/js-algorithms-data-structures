@@ -21,9 +21,32 @@ const containsDuplicate = array => {
   return false;
 };
 
+const containsDuplicateAgain = array => {
+  return array.length !== new Set(array).size;
+}
+
+const containsDupeMap = array => {
+  const map = new Map;
+  for (let i = 0; i < array.length; i++) {
+    if (map.has(array[i])) return true;
+    else map.set(array[i], true);
+  }
+  return false;
+}
+
 const arr1 = [1, 2, 3, 1];
 const arr2 = [1, 2, 3, 4];
 const arr3 = [1, 1, 1, 3, 3, 3, 4, 3, 2, 4, 2];
 console.log(containsDuplicate(arr1));
 console.log(containsDuplicate(arr2));
 console.log(containsDuplicate(arr3));
+
+console.log(containsDuplicateAgain(arr1));
+console.log(containsDuplicateAgain(arr2));
+console.log(containsDuplicateAgain(arr3));
+
+console.log(containsDupeMap(arr1));
+console.log(containsDupeMap(arr2));
+console.log(containsDupeMap(arr3));
+
+
