@@ -152,10 +152,55 @@ const findIslandsOnceMore = function(matrix) {
   return islandCount;
 }
 
+
+const findAllTheIslands = matrix => {
+  let numberOfIslands = 0;
+
+  function exploreIslands(i, j) {
+    // // Respect top of map
+    // if (i < 0 ) return false;
+
+    // // Respect bottom of map
+    // if (i > matrix.length - 1) return false;
+
+    // // Respect left edge
+    // if (j < 0) return false;
+
+    // // Respect right edge
+    // if (j > matrix[i].length - 1) return false;
+
+    if (i < 0 || i > matrix.length - 1 || j < 0 || j > matrix[i].length - 1) return false;
+
+    // Respect the island edge
+    if (matrix[i][j] === "0") return false;
+
+    matrix[i][j] = "0";
+
+    exploreIslands(i++, j);
+    exploreIslands(i--, j);
+    exploreIslands(i, j++);
+    exploreIslands(i, j--);
+  }
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j] === "1") {
+        numberOfIslands++;
+        exploreIslands(i, j);
+      }
+    }
+  }
+
+  return numberOfIslands;
+}
+
 const testMatrix = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
 const testMatrixTwo = [[1, 1, 1, 1, 0], [1, 1, 0, 1, 0], [1, 1, 0, 0, 0], [0, 0, 0, 0, 0]];
 const testMatrixThree = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
 const testMatrixFour = [[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]];
+
+const testMatrixStringOne = [["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"], ["0", "0", "0", "1", "1"]];
+const testMatrixStringTwo = [["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]];
 
 console.log(findIslands(testMatrix));
 console.log(findIslands(testMatrixTwo));
@@ -163,3 +208,6 @@ console.log(findIslands(testMatrixTwo));
 console.log(findIslandsAgain(testMatrixThree));
 
 console.log(findIslandsOnceMore(testMatrixFour));
+
+console.log(findAllTheIslands(testMatrixStringOne));
+console.log(findAllTheIslands(testMatrixStringTwo));
