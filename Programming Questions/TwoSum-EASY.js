@@ -27,6 +27,8 @@
 // already exists in our map then 7 exists in our array. We would then return
 // map.get(a[i], i) (our compliments index, our current index).
 
+//[1,2,3,4,5]
+
 const twoSum = (a, k) => {
   const map = new Map();
   for (let i = 0; i < a.length; i++) {

@@ -25,7 +25,9 @@ const runningSum = array => {
   return output;
 }
 
-const runningSumTwo = array => array.map((n, i) => array[i] = array[i] + (array[i - 1] || 0));
+const runningSumTwo = array => array.map((_, i) => array[i] = array[i] + (array[i - 1] || 0));
+
+const runningSumTwoAgain = array => array.map((_, index) => array[index] = array[index] + (array[index - 1] || 0));
 
 console.log(runningSum([1,2,3,4]));
 console.log(runningSum([1,1,1,1,1]));
@@ -34,3 +36,11 @@ console.log(runningSum([3,1,2,10,1]));
 console.log(runningSumTwo([1,2,3,4]));
 console.log(runningSumTwo([1,1,1,1,1]));
 console.log(runningSumTwo([3,1,2,10,1]));
+
+console.log(runningSumTwoAgain([1,2,3,4]));
+console.log(runningSumTwoAgain([1,1,1,1,1]));
+console.log(runningSumTwoAgain([3,1,2,10,1]));
+
+console.log(runningSumTwoAgain([1,2,3,4]));
+console.log(runningSumTwoAgain([1,1,1,1,1]));
+console.log(runningSumTwoAgain([3,1,2,10,1]));

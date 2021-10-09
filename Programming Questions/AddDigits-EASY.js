@@ -32,6 +32,27 @@ const addDigits = (number) => {
   return currentNumber;
 }
 
+const addDigitsEnd = (x) => {
+  if (x < 10) return x;
+  let result = 0;
+
+  while (x > 0) {
+    // Peel off the leading digit from x and increment result
+    result += x % 10
+    // Divide x by 10 to rude the digits by 1
+    x = Math.floor(x / 10);
+
+    // Handle scenario where result has exceeded two digits
+    // but x is 0
+    if (x === 0 && result > 9) {
+      x = result
+      result = 0
+    }
+  }
+
+  return result;
+}
+
 const addDigitsAgain = (number) => {
   if (number < 10) return number;
   let result = 0;
@@ -130,3 +151,5 @@ console.log(cheeze(21));
 console.log(cheeze(8));
 
 console.log(1 + (9999 - 1) % 9)
+
+console.log(addDigitsEnd(14))

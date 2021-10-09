@@ -18,22 +18,22 @@ function solve(n, p) {
   var endCount = 0;
 
   if (n / 2 >= p) {
-    if (n == 2 && p == 1) {
+    if (n === 2 && p === 1) {
       return startCount;
     }
     for (var i = 0; i <= n; i += 2) {
-      if (i == p || i + 1 == p) {
+      if (i === p || i + 1 === p) {
         return startCount;
       }
       startCount++;
     }
   } else {
-    if (n % 2 == 0 && p == n - 1) {
+    if (n % 2 === 0 && p === n - 1) {
       endCount++;
       return endCount;
     }
     for (var i = n; i > 0; i -= 2) {
-      if (i == p || i - 1 == p) {
+      if (i === p || i - 1 === p) {
         return endCount;
       }
       endCount++;
@@ -50,7 +50,7 @@ function solve(n, p) {
     var rev = n - p;
     if (rev > 1) {
       count = Math.floor(rev / 2);
-    } else if (n % 2 == 0 && rev == 1) {
+    } else if (n % 2 === 0 && rev === 1) {
       count = 1;
     }
   } else {
@@ -60,3 +60,31 @@ function solve(n, p) {
   }
   return count;
 }
+
+// 0 --> 1
+// 1 --> 2,3
+// 2 --> 4,5
+// 3 --> 6,7
+// 4 --> 8,9
+// 5 --> 10
+
+const pageTurner = (n, p) => {
+  const half = Math.floor(n / 2);
+  let count = 0;
+
+  // Start at the beginning
+  if (half >= p) {
+    while (count * 2 < p - 1) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+console.log(pageTurner(10,1));
+console.log(pageTurner(10,2));
+console.log(pageTurner(10,4));
+console.log(pageTurner(10,5));
+console.log(pageTurner(10,9));
+console.log(pageTurner(10,10));
