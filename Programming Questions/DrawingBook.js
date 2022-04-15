@@ -72,11 +72,15 @@ const pageTurner = (n, p) => {
   const half = Math.floor(n / 2);
   let count = 0;
 
-  // Start at the beginning
+  // Start at the beginning and work forwards
   if (half >= p) {
     while (count * 2 < p - 1) {
       count++;
     }
+  }
+  // Start at the end and work backwards
+  else {
+    while ()
   }
 
   return count;

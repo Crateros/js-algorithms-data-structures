@@ -67,11 +67,17 @@ pascalTwo = function(numRows) {
 console.log(pascalTwo(15));
 
 const pascalThree = numRows => {
+  // Outer array is the rows
   const triangle = [];
   for (let i = 0; i < numRows; i++) {
+    // For each row in num rows create an array that increases in length by 1 each iteration and fill them with 1's
+    // this takes care of the left and right edges
     triangle.push(new Array(i + 1).fill(1));
+    // Iterate through each row
     for (let j = 0; j < i; j++) {
+      // Do edge detection, we dont need to perform calculations on the edges
       if (i - 1 < 0 || j - 1 < 0 || j > i - 1) continue;
+      // Calculate the value of the middle value by adding the value to the left and the value above it
       triangle[i][j] = triangle[i - 1][j] + triangle[i - 1][j - 1];
     }
   }
