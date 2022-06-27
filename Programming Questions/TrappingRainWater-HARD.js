@@ -12,20 +12,30 @@
 // Output: 9
 
 const calculateTotalWater = array => {
-  if (array.length < 3) return 0;
+  const length = array.length;
+  if (length < 3) return 0;
   let totalWater = 0;
   let currentWaterLevel = 0;
   let left = 0;
-  let right = array.length - 1;
+  let right = length - 1;
 
   while (left < right) {
     let currentMinHeight = array[array[left] < array[right] ? left++ : right--];
+    console.log(left)
+    console.log(currentMinHeight)
     currentWaterLevel = Math.max(currentWaterLevel, currentMinHeight);
+    console.log(currentWaterLevel)
     totalWater += currentWaterLevel - currentMinHeight;
   }
 
   return totalWater;
 }
+
+// [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1];
+let arr = [1,2,3,4,5];
+let left = 0;
+console.log(arr[left++])
+console.log(arr[left++])
 
 const calculateTotalWaterAgain = array => {
   let left = 0, right = array.length - 1;
@@ -59,3 +69,20 @@ const calculateTotalWaterAgain = array => {
 
 console.log(calculateTotalWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
 console.log(calculateTotalWaterAgain([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
+
+const findTheRainWater = (elevations) => {
+  const length = elevations.length
+
+  if (length < 3) return 0;
+
+  let left = 0;
+  let right = length - 1;
+  let totalWater = 0;
+  let currentWater = 0;
+
+  // Use left and right bounding pointers and work in
+  while (left < right) {
+    // Determine which bound has the lower height,
+    let currentMinHeight = elevations[elevations[left] < elevations[right] ? left++ : right--];
+  }
+}

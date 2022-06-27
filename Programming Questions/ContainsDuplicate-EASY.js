@@ -50,3 +50,29 @@ console.log(containsDupeMap(arr2));
 console.log(containsDupeMap(arr3));
 
 
+// Python
+// class Solution:
+//     def containsDuplicate(self, nums: List[int]) -> bool:
+//         return len(set(nums)) != len(nums)
+//         dict = {}
+
+//          for num in nums:
+//              if num in dict:
+//                  return True
+//              else:
+//                  dict[num] = 1
+//          return False
+
+// Golang
+// func containsDuplicate(nums []int) bool {
+//     frequency := make(map[int]bool)
+
+//     for _, num := range nums {
+//         if (frequency[num] == true) {
+//             return true
+//         } else {
+//          frequency[num] = true
+//         }
+//     }
+//     return false
+// }
