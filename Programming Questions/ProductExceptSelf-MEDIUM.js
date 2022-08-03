@@ -12,6 +12,8 @@ const productExceptSelf = array => {
   // the outstanding index value until the result array
   // has been created O(2N) ==> O(N)
 
+  // This does not work if the product is 0 though (if input contains a zero) :(
+
   let max = 1;
   let result = [];
 
@@ -44,11 +46,13 @@ const productExceptSelfAgain = array => {
   for (let i = 1; i < array.length; i++) {
     left[i] = array[i - 1] * left[i - 1];
   }
+  console.log(left)
 
   // Create right product array
   for (let i = array.length - 1; i > 0; i--) {
     right[i - 1] = array[i] * right[i];
   }
+  console.log(right)
 
   // Combine product arrays
   for (let i = 0; i < array.length; i++) {
